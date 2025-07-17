@@ -1,0 +1,23 @@
+{
+  "name": "id-system-prototype",
+  "version": "1.0.0",
+  "description": "A test app for an ID and grading system with different user types and views.",
+  "homepage": "https://github.com/LuisFernandoQuiroz/id-system-prototype#readme",
+  "bugs": {
+    "url": "https://github.com/LuisFernandoQuiroz/id-system-prototype/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisFernandoQuiroz/id-system-prototype.git"
+  },
+  "license": "ISC",
+  "author": "Luis Fernando Quiroz Vargas",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
