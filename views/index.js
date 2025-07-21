@@ -2,15 +2,19 @@ const templateHomePage = () => /*html*/`
     <html>
         <head>
             <title>ID System</title>
-            <link rel="stylesheet" href="/styles.css">
+            <link rel="stylesheet" href="/style.css">
         </head>
         <body>
             <header>
-
+                <h1>[Nombre de escuela]</h1>
             </header>
 
             <main>
-                <div>Hello, test</div>
+                <ul>
+                    <li>Alumno</li>
+                    <li>Docente</li>
+                    <li>Administrador</li>
+                </ul>
             </main>
         </body>
     </html>
