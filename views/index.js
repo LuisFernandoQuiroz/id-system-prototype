@@ -11,9 +11,15 @@ const templateHomePage = () => /*html*/`
 
             <main>
                 <ul>
-                    <li>Alumno</li>
-                    <li>Docente</li>
-                    <li>Administrador</li>
+                    <li>
+                        <button>Alumnos</button>
+                    </li>
+                    <li>
+                        <button>Docentes</button>
+                    </li>
+                    <li>
+                        <button>Administrador</button>
+                    </li>
                 </ul>
             </main>
         </body>
