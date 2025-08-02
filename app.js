@@ -1,5 +1,6 @@
 import express from 'express';
 import templateHomePage from './views/index.js';
+import templateStudentPage from './views/student.js';
 
 const app = express();
 const port = 5000;
@@ -10,6 +11,16 @@ app.use(express.static('public'));
 app.get('', (req, res) => {
     res.send(templateHomePage());
 });
+
+app.get('/student', (req, res) => {
+    const fragment = templateStudentPage();
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Listening on http://localhost:${port}`);

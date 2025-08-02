@@ -3,16 +3,17 @@ const templateHomePage = () => /*html*/`
         <head>
             <title>ID System</title>
             <link rel="stylesheet" href="/style.css">
+            <script src="https://unpkg.com/htmx.org" defer></script>
         </head>
         <body>
             <header>
                 <h1>[Nombre de escuela]</h1>
             </header>
 
-            <main>
+            <main id="main">
                 <ul>
                     <li>
-                        <button>Alumnos</button>
+                        <button hx-get="/student" hx-target="#main" hx-swap="innerHTML">Alumnos</button>
                     </li>
                     <li>
                         <button>Docentes</button>
