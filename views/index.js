@@ -7,7 +7,7 @@ const templateHomePage = () => /*html*/`
         </head>
         <body>
             <header>
-                <h1>[Nombre de escuela]</h1>
+                <h1>[School name]</h1>
             </header>
 
             <main id="main">
