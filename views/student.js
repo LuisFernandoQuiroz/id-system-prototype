@@ -1,7 +1,7 @@
 const templateStudentPage = () => /*html*/`
     <div>
-        <h1>Scan ID</h1>
-        <input type="hidden" value="12345">
+        <h1>Alumno</h1>
+        <input type="hidden" value="">
     </div>
 `
 

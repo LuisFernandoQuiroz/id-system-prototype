@@ -1,3 +1,44 @@
-ul{
+body {
+    background-color: azure;
+    margin: 0;
+}
+
+.header {
+    background-color: darkslategray;
+    height: 10vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    
+}
+
+.home-list {
     list-style-type: none;
+    display: flex;
+    padding: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin: 0;
+    border: 1px solid black;
+    justify-content: space-evenly;
+    align-content: center;
+    scrollbar-gutter: stable both-edges;
+
+}
+
+.home-button {
+    width: 250px;
+    height: 175px;
+    background-color:mintcream;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24;
+    transition-duration: 0.3s;
+}
+
+.home-button:hover {
+    background-color: black;
+    color: white;
 }

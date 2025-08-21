@@ -6,20 +6,20 @@ const templateHomePage = () => /*html*/`
             <script src="https://unpkg.com/htmx.org" defer></script>
         </head>
         <body>
-            <header>
-                <h1>[School name]</h1>
+            <header class="header">
+                <h1 class="header-text">Cbtis 220</h1>
             </header>
 
             <main id="main">
-                <ul>
-                    <li>
-                        <button hx-get="/student" hx-target="#main" hx-swap="innerHTML">Alumnos</button>
+                <ul class="home-list">
+                    <li class="home-list-item">
+                            <button hx-get="/student" hx-target="#main" hx-swap="innerHTML" class="home-button">Alumnos</button>
                     </li>
-                    <li>
-                        <button>Docentes</button>
+                    <li class="home-list-item">
+                        <button hx-get="/teacher" hx-target="#main" hx-swap="innerHTML" class="home-button">Docentes</button>
                     </li>
-                    <li>
-                        <button>Administrador</button>
+                    <li class="home-list-item">
+                        <button hx-get="/admin" hx-target="#main" hx-swap="innerHTML" class="home-button">Administrador</button>
                     </li>
                 </ul>
             </main>

@@ -1,6 +1,8 @@
 import express from 'express';
 import templateHomePage from './views/index.js';
 import templateStudentPage from './views/student.js';
+import templateAdminPage from './views/admin.js';
+import templateTeacherPage from './views/teacher.js';
 
 const app = express();
 const port = 5000;
@@ -21,6 +23,23 @@ app.get('/student', (req, res) => {
     }
 });
 
+app.get('/teacher', (req, res) => {
+    const fragment = templateTeacherPage();
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
+
+app.get('/admin', (req, res) => {
+    const fragment = templateAdminPage();
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
 
 app.listen(port, () => {
     console.log(`Listening on http://localhost:${port}`);
