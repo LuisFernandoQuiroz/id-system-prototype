@@ -5,9 +5,18 @@ body {
 
 .header {
     background-color: darkslategray;
+    color: white;
+    font-family: sans-serif;
+
     height: 10vh;
     padding-left: 10%;
     padding-right: 10%;
+    
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
     
 }
 
@@ -25,6 +34,10 @@ body {
 
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .home-button {
     width: 250px;
     height: 175px;
@@ -39,6 +52,6 @@ body {
 }
 
 .home-button:hover {
-    background-color: black;
+    background-color: darkslategray;
     color: white;
 }
