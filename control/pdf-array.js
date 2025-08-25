@@ -1,13 +1,18 @@
-/*
-import data from "../data/data.xlsx";
+import xlsx from "xlsx";
 
-var XLSX = require("xlsx");
-var workbook = XLSX.readfie(data);
-const students =[];
+export function readStudentTable() {
+    var workbook = xlsx.readFile("./data/datos.xlsx");
+    let worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    const arrayRange = xlsx.utils.decode_range(worksheet['!ref']);
 
-let worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    let studentsArray = [];
 
-for (let index = 2; (worksheet[`A${index}`].v != null) && (worksheet[`B${index}`].v != null) && (worksheet[`C${index}`].v != null) && (worksheet[`D${index}`].v != null); index++){
-    
+    for (let index = 2; ((worksheet[`A${index}`]) != null) || ((worksheet[`B${index}`]) != null) || ((worksheet[`D${index}`]) != null); index++){
+        studentsArray.push([(worksheet[`A${index}`].v),
+                            (worksheet[`B${index}`].v),   
+                            (worksheet[`C${index}`].v), 
+                            (worksheet[`D${index}`].v)]);
+    };
+
+    console.log(studentsArray);
 }
-*/

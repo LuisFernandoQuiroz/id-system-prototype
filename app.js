@@ -3,6 +3,7 @@ import templateHomePage from './views/index.js';
 import templateStudentPage from './views/student.js';
 import templateAdminPage from './views/admin.js';
 import templateTeacherPage from './views/teacher.js';
+import { readStudentTable } from './control/pdf-array.js';
 
 const app = express();
 const port = 80;
@@ -31,6 +32,13 @@ app.get('/teacher', (req, res) => {
         res.send(wrapLayout(fragment));
     }
 });
+
+app.get("/read-excel", (req, res) => {
+    const data = readStudentTable();
+    res.json(data);
+});
+
+
 
 app.get('/admin', (req, res) => {
     const fragment = templateAdminPage();
