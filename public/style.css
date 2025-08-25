@@ -16,10 +16,6 @@ body {
     align-items: center;
 }
 
-.header-text {
-    
-}
-
 .home-list {
     list-style-type: none;
     display: flex;

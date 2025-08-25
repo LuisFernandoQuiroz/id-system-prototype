@@ -1,7 +1,6 @@
 const templateTeacherPage = () => /*html*/`
     <div>
-        <h1>Docente</h1>
-        <input value="">
+        <h1>Test</h1>
     </div>
 `
 

@@ -5,7 +5,7 @@ import templateAdminPage from './views/admin.js';
 import templateTeacherPage from './views/teacher.js';
 
 const app = express();
-const port = 80;
+const port = 5000;
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));

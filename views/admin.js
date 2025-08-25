@@ -1,7 +1,7 @@
 const templateAdminPage = () => /*html*/`
     <div>
-        <h1>Administrador</h1>
-        <input value="">
+        <h1>Student info chart</h1>
+        
     </div>
 `
 

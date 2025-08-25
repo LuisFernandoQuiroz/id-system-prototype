@@ -12,13 +12,13 @@ const templateHomePage = () => /*html*/`
 
             <main id="main">
                 <ul class="home-list">
-                    <li class="home-list-item">
-                            <button hx-get="/student" hx-target="#main" hx-swap="innerHTML" class="home-button">Alumnos</button>
+                    <li>
+                        <button hx-get="/student" hx-target="#main" hx-swap="innerHTML" class="home-button">Alumnos</button>
                     </li>
-                    <li class="home-list-item">
+                    <li>
                         <button hx-get="/teacher" hx-target="#main" hx-swap="innerHTML" class="home-button">Docentes</button>
                     </li>
-                    <li class="home-list-item">
+                    <li>
                         <button hx-get="/admin" hx-target="#main" hx-swap="innerHTML" class="home-button">Administrador</button>
                     </li>
                 </ul>
