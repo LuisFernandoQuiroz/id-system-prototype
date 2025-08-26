@@ -1,7 +1,17 @@
-const templateStudentList = () => /*html*/`
-    <ul>
-        
-    </ul>
-`
+import templateSingleStudent from "./single-student.js";
 
-export default templateStudentList;
+export default function templateStudentList(map){
+    let items = "";
+    map.forEach((value, key) => {
+        items += templateSingleStudent(key, value);
+    });
+
+    return /*html*/`
+        <div>
+            <h3>STUDENT INFO</h3>
+            <ul>
+                ${items}
+            </ul>
+        </div>
+    `;
+}

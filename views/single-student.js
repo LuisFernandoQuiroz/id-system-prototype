@@ -1,12 +1,7 @@
-const templateSingleStudent = (student) => /*html*/`
-    <li>
-        <div>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-        </div>
-    </li>
-`
-
-export default templateSingleStudent;
+export default function templateSingleStudent(key, value) {
+    return /*html*/`
+        <li><h2>${key}: </h2>
+            ${value.firstName} ${value.fatherSurname} ${value.motherSurname}
+        </li>
+    `
+}
