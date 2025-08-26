@@ -5,7 +5,7 @@ const templateTeacherPage = () => /*html*/`
         <br>
         <div id="output"></div>
     </div>
-
+<!--
     <script>
         document.getElementById("excelData").addEventListener("click", async () => {
             const res = await fetch("/read-excel");
@@ -13,6 +13,7 @@ const templateTeacherPage = () => /*html*/`
             document.getElementById("output").innerText = JSON.stringify(data, null, 2)
         });
     </script>
+-->
 `
 
 export default templateTeacherPage;

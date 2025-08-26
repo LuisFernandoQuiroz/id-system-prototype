@@ -11,6 +11,7 @@ const port = 80;
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
 
+//routes
 app.get('', (req, res) => {
     res.send(templateHomePage());
 });
@@ -37,8 +38,6 @@ app.get("/read-excel", (req, res) => {
     const data = readStudentTable();
     res.json(data);
 });
-
-
 
 app.get('/admin', (req, res) => {
     const fragment = templateAdminPage();

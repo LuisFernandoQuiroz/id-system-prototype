@@ -11,7 +11,7 @@ export function readStudentTable() {
         studentsArray.push([(worksheet[`A${index}`].v),
                             (worksheet[`B${index}`].v),   
                             (worksheet[`C${index}`].v), 
-                            (worksheet[`D${index}`].v)]);
+                            (worksheet[`D${index}`]).v]);
     };
 
     console.log(studentsArray);
