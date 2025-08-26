@@ -1,3 +1,6 @@
 node_modules
 .env
-.xlsx
+*.xls
+*.xlsx
+*.xlsm
+*.xlsb
