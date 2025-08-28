@@ -1,7 +1,10 @@
 export default function templateSingleStudent(key, value) {
     return /*html*/`
-        <li><h2>${key}: </h2>
-            ${value.firstName} ${value.fatherSurname} ${value.motherSurname}
+        <li>
+            <textarea name="" id="">${key}</textarea>
+            <textarea name="" id="">${value.firstName}</textarea>
+            <textarea name="" id="">${value.fatherSurname}</textarea>
+            <textarea name="" id="">${value.motherSurname}</textarea>
         </li>
     `
 }
