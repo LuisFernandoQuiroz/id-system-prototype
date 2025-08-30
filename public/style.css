@@ -29,7 +29,6 @@ body {
     justify-content: space-evenly;
     align-content: center;
     scrollbar-gutter: stable both-edges;
-
 }
 
 button:hover {
@@ -53,11 +52,7 @@ button:hover {
     background-color: darkslategray;
     color: white;
 }
-/*
-#generated-list{
-    display: block;
-}
-*/
+
 ul {
     border: 1px solid black;
     list-style-type: none;

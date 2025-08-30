@@ -1,26 +1,41 @@
 const templateAdminPage = () => /*html*/`
     <div>
         <h1>Student info chart</h1>
-        <div>
-            <button hx-get="/student-list" hx-target="#generated-list" hx-swap="innerHTML" class="student-list-button" onclick="toggleContent()">Lista de estudiantes</button>
-            
+        <button hx-get="/student-list" 
+                hx-target="#student-list" 
+                hx-swap="innerHTML" 
+                class="admin-buttons">Alumnos</button>
+
+        <div id="full-student-list" style="display:none;">
+            <div id="student-list"></div>
+        </div>
+
+        <button hx-get="/" 
+            hx-target="#generated-list" 
+            hx-swap="innerHTML" 
+            class="admin-buttons">Students</button>
+        
+        <div id="other-category" style="display:none;">
             <div id="generated-list"></div>
         </div>
     </div>
 
     <script>
-        function toggleContent() {
-            var x = document.getElementById("generated-list");
-            console.log("0");
-
-            if(x.style.display != "none"){
-                console.log("1");
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-                console.log("2");
+        document.body.addEventListener("htmx:afterSwap", (evt) => {
+            var targetElement = evt.target.id;
+            
+            if(targetElement === "student-list"){
+                var visibilityTarget = document.getElementById("full-student-list");
+                
+                if(visibilityTarget.style.display === "none") {
+                    visibilityTarget.style.display = "block";
+                } else {
+                    visibilityTarget.style.display = "none";
+                }
             }
-        }
+
+
+        });
     </script>
 `
 

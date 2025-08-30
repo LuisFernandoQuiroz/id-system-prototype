@@ -8,7 +8,9 @@ export default function templateStudentList(map){
 
     return /*html*/`
         <div>
-            <h3>STUDENT INFO</h3>
+            <h3 class="admin-section-header">STUDENT INFO</h3>
+            <p>Buscar alumno:</p>
+            <input type="text" placeholder="ID">
             <ul>
                 ${items}
             </ul>
