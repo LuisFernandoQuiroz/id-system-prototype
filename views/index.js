@@ -6,17 +6,17 @@ const templateHomePage = () => /*html*/`
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>ID System</title>
             <link rel="stylesheet" href="/style.css">
-            <link rel="stylesheet" href="/style-admin.css">
+            <link rel="stylesheet" href="/style-view-dropdowns.css">
             <script src="https://unpkg.com/htmx.org" defer></script>
             
         </head>
         <body>
             <header class="header">
-                <h1 class="header-text">CBTis 220</h1>
+                <h1 hx-get="/" hx-target="body" hx-swap="outerHTML" class="header-text">CBTis 220</h1>
             </header>
 
             <main id="main">
-                <ul class="home-list">
+                <ul class="home-button-list">
                     <li>
                         <button hx-get="/student" hx-target="#main" hx-swap="innerHTML" class="home-button">Alumnos</button>
                     </li>

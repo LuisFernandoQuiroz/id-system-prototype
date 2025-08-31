@@ -58,6 +58,31 @@ app.get('/student-list', (req, res) => {
     }
 });
 
+app.post('/student-list/search', (req, res) => {
+    const unfilteredMap = convertStudentExcelFileToMap();
+    const searchText = req.body.search.toUpperCase();
+
+    const filteredMap = new Map(
+        Array.from(unfilteredMap).filter(([key, value]) => 
+            value.firstName.toUpperCase().includes(searchText)
+        ).map(([key, value]) => [
+            key, 
+            {
+                firstName: value.firstName.toUpperCase(),
+                fatherSurname: value.fatherSurname.toUpperCase(),
+                motherSurname: value.motherSurname.toUpperCase()
+            }
+        ])
+    );
+
+    const fragment = templateStudentList(filteredMap);
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
+
 app.listen(port, () => {
     console.log(`Listening on http://localhost:${port}`);
 });

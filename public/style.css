@@ -17,7 +17,7 @@ body {
     align-items: center;
 }
 
-.home-list {
+.home-button-list {
     list-style-type: none;
     display: flex;
     padding: 10%;
@@ -46,6 +46,7 @@ button:hover {
     display: inline-block;
     font-size: 24;
     transition-duration: 0.3s;
+    border-radius: 10px;
 }
 
 .home-button:hover {
@@ -60,9 +61,9 @@ ul {
 
 li {
     display: flex;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
-textarea {
+textarea, input {
     resize: none;
 }
