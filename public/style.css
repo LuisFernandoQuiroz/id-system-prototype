@@ -1,7 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: azure;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    scrollbar-gutter: stable both-edges;
 }
 
 .header {
@@ -17,6 +23,10 @@ body {
     align-items: center;
 }
 
+.header-text:hover {
+    cursor: pointer;
+}
+
 .home-button-list {
     list-style-type: none;
     display: flex;
@@ -28,7 +38,6 @@ body {
     border: 1px solid black;
     justify-content: space-evenly;
     align-content: center;
-    scrollbar-gutter: stable both-edges;
 }
 
 button:hover {
@@ -57,11 +66,11 @@ button:hover {
 ul {
     border: 1px solid black;
     list-style-type: none;
+    align-items: center;
 }
 
 li {
     display: flex;
-    /*border: 1px solid red;*/
 }
 
 textarea, input {
