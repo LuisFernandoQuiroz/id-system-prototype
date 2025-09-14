@@ -53,7 +53,7 @@ button:hover {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 24;
+    font-size: 24px;
     transition-duration: 0.3s;
     border-radius: 10px;
 }

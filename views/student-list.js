@@ -8,8 +8,6 @@ export default function templateStudentList(map){
 
     return /*html*/`
         <div>
-            <h3 class="admin-section-header">Alumnos</h3>
-
             <ul>
                 ${items}
             </ul>

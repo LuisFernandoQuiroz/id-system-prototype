@@ -1,6 +1,7 @@
 const templateAdminPage = () => /*html*/`
     <div>
         <h1>Student info chart</h1>
+        <br>
         
         <div class="search">
             <input 
@@ -11,6 +12,8 @@ const templateAdminPage = () => /*html*/`
                 hx-trigger="keyup changed delay:500ms"
                 hx-target="#search-results"
             />
+            <br>
+            <br>
 
             <div id="search-results"></div>
         </div>
