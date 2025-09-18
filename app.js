@@ -64,13 +64,13 @@ app.post('/student-list/search', (req, res) => {
 
     const filteredMap = new Map(
         Array.from(unfilteredMap).filter(([key, value]) => 
-            value.firstName.toUpperCase().includes(searchText)
+            value.nombre.toUpperCase().includes(searchText)
         ).map(([key, value]) => [
             key, 
             {
-                firstName: value.firstName.toUpperCase(),
-                fatherSurname: value.fatherSurname.toUpperCase(),
-                motherSurname: value.motherSurname.toUpperCase()
+                nombre: value.nombre.toUpperCase(),
+                apellidoPaterno: value.apellidoPaterno.toUpperCase(),
+                apellidoMaterno: value.apellidoMaterno.toUpperCase()
             }
         ])
     );
