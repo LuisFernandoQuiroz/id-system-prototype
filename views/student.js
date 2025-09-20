@@ -1,9 +1,9 @@
 const templateStudentPage = () => /*html*/`
     <div>
-        <h1>Alumno</h1>
-        <input value="12345">
+        <h1>Scan ID</h1>
+        <input id="student-id-input">
 
-        <button hx-get="/student" hx-target="#main" hx-swap="innerHTML" class="student-button">Alumnos</button>
+        <button hx-get="/student" hx-target="#main" hx-swap="innerHTML" class="student-button">Enter</button>
     </div>
 `
 

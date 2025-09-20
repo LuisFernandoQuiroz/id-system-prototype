@@ -2,7 +2,8 @@ const templateAdminPage = () => /*html*/`
     <div>
         <h1>Student info chart</h1>
         <br>
-        
+
+<!-- SEARCH STUDENT -->
         <div class="search">
             <input 
                 type="search" 
@@ -19,7 +20,8 @@ const templateAdminPage = () => /*html*/`
         </div>
         <br>
 
-        <div class="view-section">
+<!-- FULL STUDENT LIST -->
+        <div>
             <button hx-get="/student-list" 
                     hx-target="#student-list" 
                     hx-swap="innerHTML" 
@@ -29,19 +31,18 @@ const templateAdminPage = () => /*html*/`
                 <div id="student-list"></div>
             </div>
         </div>
-        <br>
-        <div class="view-section">
-            <button hx-get="/" 
-                    hx-target="#generated-list" 
-                    hx-swap="innerHTML" 
-                    class="dropdown-buttons">Students</button>
 
-            <div id="other-category" style="display:none;">
-                <div id="generated-list"></div>
+<!-- FULL TEACHER LIST -->
+        <div>
+            <button hx-get="/teacher-list" 
+                    hx-target="#teacher-list" 
+                    hx-swap="innerHTML" 
+                    class="dropdown-buttons">Docentes</button>
+
+            <div id="full-teacher-list" style="display:none;">
+                <div id="teacher-list"></div>
             </div>
         </div>
-
-        
     </div>
 
     <script>

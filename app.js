@@ -3,7 +3,7 @@ import templateHomePage from './views/index.js';
 import templateStudentPage from './views/student.js';
 import templateAdminPage from './views/admin.js';
 import templateTeacherPage from './views/teacher.js';
-import templateStudentList from './views/student-list.js';
+import templateStudentList from './views/student list/student-list.js';
 import { convertStudentExcelFileToMap } from './control/excel-to-map.js';
 
 
@@ -18,7 +18,6 @@ app.get('', (req, res) => {
     res.send(templateHomePage());
 });
 
-//student related routes
 app.get('/student', (req, res) => {
     const fragment = templateStudentPage();
     if (req.headers['hx-request']) {
@@ -28,7 +27,6 @@ app.get('/student', (req, res) => {
     }
 });
 
-//teacher related routes
 app.get('/teacher', (req, res) => {
     const fragment = templateTeacherPage();
     if (req.headers['hx-request']) {
@@ -38,7 +36,6 @@ app.get('/teacher', (req, res) => {
     }
 });
 
-//admin related routes
 app.get('/admin', (req, res) => {
     const fragment = templateAdminPage();
     if (req.headers['hx-request']) {
@@ -48,16 +45,13 @@ app.get('/admin', (req, res) => {
     }
 });
 
-app.get('/student-list', (req, res) => {
-    const map = convertStudentExcelFileToMap();
-    const fragment = templateStudentList(map);
-    if (req.headers['hx-request']) {
-        res.send(fragment);
-    } else {
-        res.send(wrapLayout(fragment));
-    }
-});
+//STUDENT ROUTES
 
+
+//TEACHER ROUTES
+
+
+//ADMIN ROUTES
 app.post('/student-list/search', (req, res) => {
     const unfilteredMap = convertStudentExcelFileToMap();
     const searchText = req.body.search.toUpperCase();
@@ -83,6 +77,27 @@ app.post('/student-list/search', (req, res) => {
     }
 });
 
+app.get('/student-list', (req, res) => {
+    const map = convertStudentExcelFileToMap();
+    const fragment = templateStudentList(map);
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
+
+app.get('/teacher-list', (req, res) => {
+    const map = convertStudentExcelFileToMap();
+    const fragment = templateStudentList(map);
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
+
+//PORT
 app.listen(port, () => {
     console.log(`Listening on http://localhost:${port}`);
 });

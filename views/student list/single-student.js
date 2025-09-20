@@ -5,6 +5,7 @@ export default function templateSingleStudent(key, value) {
             <textarea name="" id="">${value.nombre}</textarea>
             <textarea name="" id="">${value.apellidoPaterno}</textarea>
             <textarea name="" id="">${value.apellidoMaterno}</textarea>
+            <textarea name="" id="">${value.CURP}</textarea>
             <button>Edit</button>
         </li>
     `
