@@ -44,12 +44,21 @@ export function convertTeacherExcelToMap() {
 
     const teacherMap = new Map();
 
+    let teacherID;
     let teacherName;
     let teacherClass;
 
     for(let index = 2; (((worksheet[`M${index}`])||(worksheet[`N${index}`])||(worksheet[`O${index}`])) != undefined); index++){
-        teacherName = worksheet[`O${index}`].v;
+        teacherID = worksheet[`O${index}`].v;
 
+        if([...teacherMap.keys()].includes(teacherID)){
+
+        } else if (![...teacherMap.keys()].includes(teacherID)){
+            teacherClass = worksheet[`M${index}`].v;
+            teacherName = worksheet[`L${index}`].v;
+
+            teacherMap.set(teacherID, {teacherName, teacherClass});
+        }
 
     }
 
