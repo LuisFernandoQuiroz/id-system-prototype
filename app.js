@@ -5,7 +5,8 @@ import templateAdminPage from './views/admin.js';
 import templateTeacherPage from './views/teacher.js';
 import templateStudentList from './views/student list/student-list.js';
 import { convertStudentExcelFileToMap } from './control/excel-to-map.js';
-
+import templateTeacherList from './views/teacher list/teacher-list.js';
+import { convertTeacherExcelToMap } from './control/excel-to-map.js';
 
 const app = express();
 const port = 80;
@@ -88,8 +89,8 @@ app.get('/student-list', (req, res) => {
 });
 
 app.get('/teacher-list', (req, res) => {
-    const map = convertStudentExcelFileToMap();
-    const fragment = templateStudentList(map);
+    const map = convertTeacherExcelToMap();
+    const fragment = templateTeacherList(map);
     if (req.headers['hx-request']) {
         res.send(fragment);
     } else {

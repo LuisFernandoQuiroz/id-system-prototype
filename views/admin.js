@@ -31,13 +31,14 @@ const templateAdminPage = () => /*html*/`
                 <div id="student-list"></div>
             </div>
         </div>
+        <br>
 
 <!-- FULL TEACHER LIST -->
         <div>
             <button hx-get="/teacher-list" 
                     hx-target="#teacher-list" 
                     hx-swap="innerHTML" 
-                    class="dropdown-buttons">Docentes</button>
+                    class="dropdown-buttons">Maestros</button>
 
             <div id="full-teacher-list" style="display:none;">
                 <div id="teacher-list"></div>
@@ -45,12 +46,21 @@ const templateAdminPage = () => /*html*/`
         </div>
     </div>
 
+<!-- VISIBILITY CHANGE -->
     <script>
         document.body.addEventListener("htmx:afterSwap", (evt) => {
             var targetElement = evt.target.id;
             
             if(targetElement === "student-list"){
                 var visibilityTarget = document.getElementById("full-student-list");
+                
+                if(visibilityTarget.style.display === "none") {
+                    visibilityTarget.style.display = "block";
+                } else {
+                    visibilityTarget.style.display = "none";
+                }
+            } else if(targetElement === "teacher-list"){
+                var visibilityTarget = document.getElementById("full-teacher-list");
                 
                 if(visibilityTarget.style.display === "none") {
                     visibilityTarget.style.display = "block";

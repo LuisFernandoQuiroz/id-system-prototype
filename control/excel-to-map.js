@@ -19,16 +19,16 @@ export function convertStudentExcelFileToMap() {
         noControl = worksheet[`H${index}`].v;
 
         if(![...studentMap.keys()].includes(noControl)){
-            CURP = worksheet[`L${index}`].v;
-            grupo = worksheet[`G${index}`].v;
-            carrera = worksheet[`C${index}`].v;
-            nombre = worksheet[`I${index}`].v;
-            apellidoPaterno = worksheet[`J${index}`].v;
+            CURP = worksheet[`L${index}`].v.toUpperCase();
+            grupo = worksheet[`G${index}`].v.toUpperCase();
+            carrera = worksheet[`C${index}`].v.toUpperCase();
+            nombre = worksheet[`I${index}`].v.toUpperCase();
+            apellidoPaterno = worksheet[`J${index}`].v.toUpperCase();
             
             if (worksheet[`K${index}`] === undefined){
                 apellidoMaterno = "";
             } else{
-                apellidoMaterno = worksheet[`K${index}`].v;
+                apellidoMaterno = worksheet[`K${index}`].v.toUpperCase();
             }
             
             studentMap.set(noControl, {nombre, apellidoPaterno, apellidoMaterno, CURP});
@@ -46,20 +46,23 @@ export function convertTeacherExcelToMap() {
 
     let teacherID;
     let teacherName;
-    let teacherClass;
 
     for(let index = 2; (((worksheet[`M${index}`])||(worksheet[`N${index}`])||(worksheet[`O${index}`])) != undefined); index++){
-        teacherID = worksheet[`O${index}`].v;
+        let count = 0;
 
-        if([...teacherMap.keys()].includes(teacherID)){
+        if(worksheet[`O${index}`] != undefined){
+            teacherID = worksheet[`O${index}`].v.toUpperCase();
+            count+=1;
+        };
 
-        } else if (![...teacherMap.keys()].includes(teacherID)){
-            teacherClass = worksheet[`M${index}`].v;
-            teacherName = worksheet[`L${index}`].v;
+        if(worksheet[`N${index}`] != undefined){
+            teacherName = worksheet[`N${index}`].v.toUpperCase();
+        };
 
-            teacherMap.set(teacherID, {teacherName, teacherClass});
-        }
-
+        if(![...teacherMap.keys()].includes(teacherID) && count == 1){
+            teacherMap.set(teacherID,teacherName);
+        };
     }
 
+    return teacherMap;
 }
