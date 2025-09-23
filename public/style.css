@@ -11,7 +11,7 @@ body {
 }
 
 .header {
-    background-color: darkslategray;
+    background-color: #2f4f4f;
     color: white;
     font-family: sans-serif;
 
@@ -47,7 +47,7 @@ button:hover {
 .home-button {
     width: 250px;
     height: 175px;
-    background-color:mintcream;
+    background-color:#f5fffa;
     border: 1px solid black;
     color: black;
     text-align: center;

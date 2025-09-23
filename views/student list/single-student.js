@@ -1,12 +1,13 @@
 export default function templateSingleStudent(key, value) {
     return /*html*/`
-        <li>
-            <textarea name="" id="">${key}</textarea>
-            <textarea name="" id="">${value.nombre}</textarea>
-            <textarea name="" id="">${value.apellidoPaterno}</textarea>
-            <textarea name="" id="">${value.apellidoMaterno}</textarea>
-            <textarea name="" id="">${value.CURP}</textarea>
-            <button>Edit</button>
-        </li>
+        <tr>
+            <td>${key}</td>
+            <td>${value.carrera}</td>
+            <td>${value.grupo}</td>
+            <td>${value.nombre}</td>
+            <td>${value.apellidoPaterno}</td>
+            <td>${value.apellidoMaterno}</td>
+            <td>${value.CURP}</td>
+        </tr>
     `
 }

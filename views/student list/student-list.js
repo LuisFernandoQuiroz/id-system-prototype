@@ -8,9 +8,19 @@ export default function templateStudentList(map){
 
     return /*html*/`
         <div>
-            <ul>
+            <br>
+            <table>
+                <tr>
+                    <th>No. Control</th>
+                    <th>Carrera</th>
+                    <th>Grupo</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>CURP</th>
+                </tr>
                 ${items}
-            </ul>
+            </table>
         </div>
     `;
 }

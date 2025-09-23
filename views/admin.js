@@ -38,7 +38,7 @@ const templateAdminPage = () => /*html*/`
             <button hx-get="/teacher-list" 
                     hx-target="#teacher-list" 
                     hx-swap="innerHTML" 
-                    class="dropdown-buttons">Maestros</button>
+                    class="dropdown-buttons">Docentes</button>
 
             <div id="full-teacher-list" style="display:none;">
                 <div id="teacher-list"></div>

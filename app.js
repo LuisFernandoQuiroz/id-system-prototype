@@ -54,28 +54,41 @@ app.get('/admin', (req, res) => {
 
 //ADMIN ROUTES
 app.post('/student-list/search', (req, res) => {
-    const unfilteredMap = convertStudentExcelFileToMap();
     const searchText = req.body.search.toUpperCase();
-
-    const filteredMap = new Map(
-        Array.from(unfilteredMap).filter(([key, value]) => 
+    let fragment;
+    
+    if(searchText != ""){
+        const unfilteredMap = convertStudentExcelFileToMap();
+        const filteredMap = new Map(
+            Array.from(unfilteredMap).filter(([key, value]) => 
             value.nombre.toUpperCase().includes(searchText)
-        ).map(([key, value]) => [
+            ).map(([key, value]) => [
             key, 
-            {
-                nombre: value.nombre.toUpperCase(),
-                apellidoPaterno: value.apellidoPaterno.toUpperCase(),
-                apellidoMaterno: value.apellidoMaterno.toUpperCase()
-            }
-        ])
-    );
+                {
+                    carrera: value.carrera.toUpperCase(),
+                    grupo: value.grupo.toUpperCase(),
+                    nombre: value.nombre.toUpperCase(),
+                    apellidoPaterno: value.apellidoPaterno.toUpperCase(),
+                    apellidoMaterno: value.apellidoMaterno.toUpperCase(),
+                    CURP: value.CURP.toUpperCase()
+                }
+            ])
+        );
 
-    const fragment = templateStudentList(filteredMap);
+        fragment = templateStudentList(filteredMap);
+
+    } else if(searchText == ("" || " ")){
+        const noSearch = () => /*HTML*/`
+            <div></div>
+        `
+        fragment = noSearch(); 
+    }
+
     if (req.headers['hx-request']) {
         res.send(fragment);
     } else {
         res.send(wrapLayout(fragment));
-    }
+    }  
 });
 
 app.get('/student-list', (req, res) => {

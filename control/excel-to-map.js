@@ -31,7 +31,7 @@ export function convertStudentExcelFileToMap() {
                 apellidoMaterno = worksheet[`K${index}`].v.toUpperCase();
             }
             
-            studentMap.set(noControl, {nombre, apellidoPaterno, apellidoMaterno, CURP});
+            studentMap.set(noControl, {nombre, apellidoPaterno, apellidoMaterno, carrera, grupo, CURP});
         };
     }
 

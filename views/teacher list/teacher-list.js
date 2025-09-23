@@ -8,7 +8,12 @@ export default function templateTeacherList(map){
 
     return /*html*/`
         <div>
-            <table style="border: 1px solid black">
+            <br>
+            <table>
+                <tr>
+                    <th>RFC Docente</th>
+                    <th>Nombre</th>
+                </tr>
                 ${items}
             </table>
         </div>

@@ -16,7 +16,7 @@ const templateHomePage = () => /*html*/`
         </head>
         <body>
             <header class="header">
-                <h1 hx-get="/" hx-target="body" hx-swap="outerHTML" class="header-text">CBTis 220</h1>
+                <h1 hx-get="/" hx-target="body" hx-swap="innerHTML" class="header-text">CBTis 220</h1>
             </header>
 
             <main id="main">
