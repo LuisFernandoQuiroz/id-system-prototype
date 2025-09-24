@@ -33,6 +33,9 @@ const templateHomePage = () => /*html*/`
                 </ul>
             </main>
         </body>
+        <footer>
+            footer
+        </footer>
     </html>
 `
 
