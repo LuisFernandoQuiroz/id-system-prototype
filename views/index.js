@@ -16,6 +16,7 @@ const templateHomePage = () => /*html*/`
         </head>
         <body>
             <header class="header">
+                <img src="./resources/cbtis220-logo.png" alt="" height="75" width="75">
                 <h1 hx-get="/" hx-target="body" hx-swap="innerHTML" class="header-text">CBTis 220</h1>
             </header>
 
