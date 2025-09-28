@@ -7,9 +7,9 @@ export default function templateStudentList(map){
     });
 
     return /*html*/`
-        <div>
+        <div id="table-container">
             <br>
-            <table>
+            <table id="full-student-table">
                 <tr>
                     <th>No. Control</th>
                     <th>Carrera</th>
@@ -18,6 +18,7 @@ export default function templateStudentList(map){
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>CURP</th>
+                    <th id="table-button-column"></th>
                 </tr>
                 ${items}
             </table>

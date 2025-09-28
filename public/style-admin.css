@@ -8,11 +8,24 @@ table {
     transform: translateX(-50%) translateX(50vw);
 }
 
+@media only screen and (max-width: 1550px) {
+    #full-student-table {
+        transform: none;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #full-teacher-table {
+        transform: none;
+    }
+}
+
 th {
     background-color: darkslategray;
     color: white;
-    padding: 10px 30px 10px 5px;
+    padding: 10px 20px 10px 5px;
     text-align: left;
+    position: sticky;
 }
 
 tr:nth-child(even){
@@ -29,5 +42,9 @@ tr:hover {
 }
 
 td {
-    padding: 5px 30px 5px 5px;
+    padding: 5px 20px 5px 5px;
+}
+
+#table-button-column {
+    padding: 5px 5px 5px 5px
 }

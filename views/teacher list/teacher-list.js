@@ -7,12 +7,13 @@ export default function templateTeacherList(map){
     });
 
     return /*html*/`
-        <div>
+        <div id="table-container">
             <br>
-            <table>
+            <table id="full-teacher-table">
                 <tr>
                     <th>RFC Docente</th>
                     <th>Nombre</th>
+                    <th id="table-button-column"></th>
                 </tr>
                 ${items}
             </table>

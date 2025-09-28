@@ -79,3 +79,26 @@ button:hover {
 textarea, input {
     resize: none;
 }
+
+#table-button {
+    width: 75px;
+    height: 25px;
+    background-color:#f5fffa;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.3s;
+    border-radius: 10px;
+}
+
+#table-button:hover {
+    background-color: maroon;
+    color: white;
+}
+
+#table-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
