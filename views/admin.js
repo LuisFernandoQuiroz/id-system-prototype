@@ -45,7 +45,8 @@ const templateAdminPage = () => /*html*/`
             </div>
         </div>
     </div>
-
+    <br>
+    <br>
 <!-- VISIBILITY CHANGE -->
     <script>
         document.body.addEventListener("htmx:afterSwap", (evt) => {

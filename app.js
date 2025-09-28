@@ -1,5 +1,10 @@
+//LIBRARY IMPORTS
 import express from 'express';
 import xlsx from 'xlsx';
+import path from 'path';
+import fs from 'fs';
+
+//IN-APP IMPORTS
 import templateHomePage from './views/index.js';
 import templateStudentPage from './views/student.js';
 import templateAdminPage from './views/admin.js';
@@ -47,6 +52,12 @@ app.get('/admin', (req, res) => {
     }
 });
 
+
+
+
+
+
+
 //STUDENT ROUTES
 app.get('/student-list-download', (req, res) => {
     const workbook = xlsx.readFile("./data/detalle_calificaciones (51).xlsx");
@@ -82,6 +93,16 @@ app.get('/student-list-download', (req, res) => {
 
     res.send(buffer);
 });
+
+
+
+
+
+
+
+
+
+
 
 //TEACHER ROUTES
 
