@@ -94,7 +94,9 @@ app.get('/student-list-download', (req, res) => {
     res.send(buffer);
 });
 
-
+app.get('/file-input', (req, res) => {
+    const inputFile = document.getElementById("input-file").v;
+});
 
 
 
@@ -149,6 +151,7 @@ app.post('/student-list/search', (req, res) => {
 app.get('/student-list', (req, res) => {
     const map = convertStudentExcelFileToMap();
     const fragment = templateStudentList(map);
+
     if (req.headers['hx-request']) {
         res.send(fragment);
     } else {
