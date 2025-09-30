@@ -44,9 +44,14 @@ const templateAdminPage = () => /*html*/`
                 <div id="teacher-list"></div>
             </div>
         </div>
+<!-- INSERT DATA -->
+        <div>
+            
+        </div>
     </div>
     <br>
     <br>
+
 <!-- VISIBILITY CHANGE -->
     <script>
         document.body.addEventListener("htmx:afterSwap", (evt) => {
