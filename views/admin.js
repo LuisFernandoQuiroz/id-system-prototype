@@ -1,8 +1,6 @@
 const templateAdminPage = () => /*html*/`
     <div>
-        <h1>Student info chart</h1>
         <br>
-
 <!-- SEARCH STUDENT -->
         <div class="search">
             <input 
@@ -44,13 +42,21 @@ const templateAdminPage = () => /*html*/`
                 <div id="teacher-list"></div>
             </div>
         </div>
+        <br>
+
 <!-- INSERT DATA -->
         <div>
-            
+            <button hx-get="/input-data"
+                    hx-target="#input-data" 
+                    hx-swap="innerHTML" 
+                    class="dropdown-buttons">Modificar datos</button>
+
+            <div id="full-data-options" style="display:none;">
+                <div id="input-data"></div>
+            </div>
         </div>
     </div>
-    <br>
-    <br>
+    <br><br>
 
 <!-- VISIBILITY CHANGE -->
     <script>
@@ -67,6 +73,14 @@ const templateAdminPage = () => /*html*/`
                 }
             } else if(targetElement === "teacher-list"){
                 var visibilityTarget = document.getElementById("full-teacher-list");
+                
+                if(visibilityTarget.style.display === "none") {
+                    visibilityTarget.style.display = "block";
+                } else {
+                    visibilityTarget.style.display = "none";
+                }
+            } else if(targetElement === "input-data"){
+                var visibilityTarget = document.getElementById("full-data-options");
                 
                 if(visibilityTarget.style.display === "none") {
                     visibilityTarget.style.display = "block";

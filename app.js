@@ -1,8 +1,9 @@
 //LIBRARY IMPORTS
 import express from 'express';
 import xlsx from 'xlsx';
+import multer from 'multer';
 import path from 'path';
-import fs from 'fs';
+import fs, { readdirSync } from 'fs';
 
 //IN-APP IMPORTS
 import templateHomePage from './views/index.js';
@@ -13,9 +14,26 @@ import templateStudentList from './views/student list/student-list.js';
 import { convertStudentExcelFileToMap } from './control/excel-to-map.js';
 import templateTeacherList from './views/teacher list/teacher-list.js';
 import { convertTeacherExcelToMap } from './control/excel-to-map.js';
+import templateDataDropdown from './views/data changes/admin-data-dropdown.js';
 
+//APP CONSTANTS
 const app = express();
 const port = 80;
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadPath = "data/input data/";
+
+        fs.mkdirSync(uploadPath, { recursive: true });
+        fs,readdirSync(uploadPath).forEach(existingFile => {
+            fs.unlinkSync(path.join(uploadPath, existingFile));
+        });
+        cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+        const extension = path.extname(file.originalname);
+        cb(null, "mixedData" + extension);
+    }
+});
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
@@ -51,11 +69,6 @@ app.get('/admin', (req, res) => {
         res.send(wrapLayout(fragment));
     }
 });
-
-
-
-
-
 
 
 //STUDENT ROUTES
@@ -97,13 +110,6 @@ app.get('/student-list-download', (req, res) => {
 app.get('/file-input', (req, res) => {
     const inputFile = document.getElementById("input-file").v;
 });
-
-
-
-
-
-
-
 
 
 //TEACHER ROUTES
@@ -167,6 +173,20 @@ app.get('/teacher-list', (req, res) => {
     } else {
         res.send(wrapLayout(fragment));
     }
+});
+
+app.get('/input-data', (req, res) => {
+    const fragment = templateDataDropdown();
+    if (req.headers['hx-request']) {
+        res.send(fragment);
+    } else {
+        res.send(wrapLayout(fragment));
+    }
+});
+
+//EXCEL DATA UPLOAD
+app.post('/file-upload', (req, res) => {
+
 });
 
 //PORT
