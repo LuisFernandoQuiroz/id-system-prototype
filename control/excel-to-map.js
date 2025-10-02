@@ -15,7 +15,6 @@ export function convertStudentExcelFileToMap() {
     let apellidoMaterno;
 
     for(let index = 2; ( ( (worksheet[`H${index}`]) || (worksheet[`G${index}`]) || (worksheet[`C${index}`]) || (worksheet[`I${index}`]) || (worksheet[`J${index}`]) || (worksheet[`K${index}`]) || (worksheet[`L${index}`]) ) != undefined ); index++){
-        /* (((worksheet[`A${index}`]) || (worksheet[`B${index}`]) || (worksheet[`D${index}`])) != (null || undefined)) */
         noControl = worksheet[`H${index}`].v;
 
         if(![...studentMap.keys()].includes(noControl)){
