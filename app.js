@@ -15,6 +15,7 @@ import { convertStudentExcelFileToMap } from './control/excel-to-map.js';
 import templateTeacherList from './views/teacher list/teacher-list.js';
 import { convertTeacherExcelToMap } from './control/excel-to-map.js';
 import templateDataDropdown from './views/data changes/admin-data-dropdown.js';
+import { readExcelFile } from './control/order-excel-data.js';
 
 //APP CONSTANTS
 const app = express();
@@ -34,6 +35,7 @@ const storage = multer.diskStorage({
         cb(null, "mixedData" + extension);
     }
 });
+const upload = multer({ storage });
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
@@ -105,10 +107,6 @@ app.get('/student-list-download', (req, res) => {
     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
     res.send(buffer);
-});
-
-app.get('/file-input', (req, res) => {
-    const inputFile = document.getElementById("input-file").v;
 });
 
 
@@ -185,8 +183,17 @@ app.get('/input-data', (req, res) => {
 });
 
 //EXCEL DATA UPLOAD
-app.post('/file-upload', (req, res) => {
+app.post('/file-upload', upload.single("xlsxFile"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+    }
+    
+    readExcelFile(req.file.path);
 
+    res.json({
+        message: "File successfully uploaded",
+        file: req.file
+    });
 });
 
 //PORT
