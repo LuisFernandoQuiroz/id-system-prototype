@@ -11,8 +11,8 @@ export default function templateTeacherList(map){
             <br>
             <table id="full-teacher-table">
                 <tr>
-                    <th>RFC Docente</th>
-                    <th>Nombre</th>
+                    <th>RFC DOCENTE</th>
+                    <th>NOMBRE DOCENTE</th>
                     <th id="table-button-column"></th>
                 </tr>
                 ${items}

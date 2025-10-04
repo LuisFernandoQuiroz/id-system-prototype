@@ -188,9 +188,9 @@ app.post('/file-upload', upload.single("xlsxFile"), (req, res) => {
         return res.status(400).json({ error: "No file uploaded" });
     }
     
-    let buffer = readExcelFile(req.file.path);
+    let outputPath = readExcelFile(req.file.path);
     
-    res.send("File received");
+    res.send("File recived and data sorted at " + outputPath);
 });
 
 //PORT

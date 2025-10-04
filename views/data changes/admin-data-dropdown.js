@@ -1,5 +1,4 @@
 export default function templateDataDropdown(){
-    
     return /*html*/`
         <div>
             <form hx-post="/file-upload" hx-encoding="multipart/form-data">

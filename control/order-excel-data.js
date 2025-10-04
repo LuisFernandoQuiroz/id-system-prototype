@@ -1,22 +1,27 @@
 import xlsx from 'xlsx';
+import fs from 'fs';
+import path from 'path';
 
 export function readExcelFile(filepath) {
+    const __dirname = path.resolve();
     const inputWorkbook = xlsx.readFile(filepath);
-    const newWorkbook = xlsx.utils.book_new();
     const inputWorksheet = inputWorkbook.Sheets[inputWorkbook.SheetNames[0]];
-    let inputData = xlsx.utils.sheet_to_json(inputWorksheet, { header: 1, defval:"" });
     
+    let inputData = xlsx.utils.sheet_to_json(inputWorksheet, { header: 1, blankrows: false ,defval:"" });
+
+    let newWorkbook = xlsx.utils.book_new();
     let newWorksheet;
     let uniqueData = [];
     let repeatData = new Set();
 
     let filteredSheetData = inputData.slice(1).map(row => ({
-        "NO CONTROL": row[7] ? String(row["NO CONTROL"]).toUpperCase(): "",
-        "CARRERA":row[9] ? String(row["CARRERA"]).toUpperCase(): "",
-        "GRUPO":row[9] ? String(row["GRUPO"]).toUpperCase(): "",
-        "NOMBRE": row[8] ? String(row["NOMBRE"]).toUpperCase(): "",
-        "APELLIDO PATERNO":row[9] ? String(row["APELLIDO PATERNO"]).toUpperCase(): "",
-        "APELLIDO MATERNO":row[10] ? String(row["APELLIDO MATERNO"]).toUpperCase(): ""
+        "NO CONTROL": row[7],
+        "CARRERA":row[2],
+        "GRUPO":row[6],
+        "NOMBRE": row[8],
+        "PATERNO":row[9],
+        "MATERNO":row[10],
+        "CURP":row[11]
     }));
 
     for (let row of filteredSheetData){
@@ -47,10 +52,15 @@ export function readExcelFile(filepath) {
     newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
     xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "PROFESORES");
 
-    let buffer = xlsx.write(newWorkbook, {
-        type: "buffer",
-        bookType: "xlsx"
-    });
+    const outputDirectory = path.join(__dirname, "data", "ordered data");
+    
+    if (!fs.existsSync(outputDirectory)){
+        fs.mkdirSync(outputDirectory, { recursive: true });
+    }
 
-    return buffer;
+    const outputPath = path.join(outputDirectory, "sorted-data.xlsx");
+
+    xlsx.writeFile(newWorkbook, outputPath);
+
+    return outputPath;
 }
