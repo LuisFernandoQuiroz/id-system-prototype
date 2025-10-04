@@ -34,6 +34,7 @@ export function readExcelFile(filepath) {
     newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
     xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "ALUMNOS");
 
+    //Reset to create teacher sheet
     uniqueData = [];
     repeatData = new Set();
 
@@ -58,6 +59,10 @@ export function readExcelFile(filepath) {
         fs.mkdirSync(outputDirectory, { recursive: true });
     }
 
+
+
+
+    //Write file
     const outputPath = path.join(outputDirectory, "sorted-data.xlsx");
 
     xlsx.writeFile(newWorkbook, outputPath);
