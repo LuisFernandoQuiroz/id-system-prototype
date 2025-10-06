@@ -12,6 +12,7 @@ export default function templateStudentList(map){
             <table id="full-student-table">
                 <tr>
                     <th>No. Control</th>
+                    <th>Generacion</th>
                     <th>Carrera</th>
                     <th>Grupo</th>
                     <th>Nombre</th>

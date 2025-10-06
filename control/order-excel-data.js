@@ -16,6 +16,7 @@ export function readExcelFile(filepath) {
 
     let filteredSheetData = inputData.slice(1).map(row => ({
         "NO CONTROL": row[7],
+        "GENERACION":row[3],
         "CARRERA":row[2],
         "GRUPO":row[6],
         "NOMBRE": row[8],
@@ -39,19 +40,19 @@ export function readExcelFile(filepath) {
     repeatData = new Set();
 
     filteredSheetData = inputData.slice(1).map(row => ({
-        "RFC":row[14],
-        "PROFESOR": row[13]
+        "RFC DOCENTE":row[14],
+        "NOMBRE DOCENTE": row[13]
     }));
 
     for (let row of filteredSheetData){
-        if (!repeatData.has(row["RFC"])){
-            repeatData.add(row["RFC"]);
+        if (!repeatData.has(row["RFC DOCENTE"])){
+            repeatData.add(row["RFC DOCENTE"]);
             uniqueData.push(row);
         }
     }
 
     newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
-    xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "PROFESORES");
+    xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "DOCENTES");
 
     const outputDirectory = path.join(__dirname, "data", "ordered data");
     
@@ -59,7 +60,14 @@ export function readExcelFile(filepath) {
         fs.mkdirSync(outputDirectory, { recursive: true });
     }
 
+    //Reset to create active class list
+    uniqueData = [];
+    repeatData = new Set();
 
+    filteredSheetData = inputData.slice(1).map(row => ({
+        "RFC":row[14],
+        "PROFESOR":row[14]
+    }));
 
 
     //Write file

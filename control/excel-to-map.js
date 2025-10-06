@@ -7,30 +7,39 @@ export function convertStudentExcelFileToMap() {
     const studentMap = new Map();
 
     let noControl;
-    let CURP;
+    let generacion;
     let carrera;
-    let grupo;
+    let grupo;    
     let nombre;
     let apellidoPaterno;
     let apellidoMaterno;
-
-    for(let index = 2; ( ( (worksheet[`A${index}`]) || (worksheet[`B${index}`]) || (worksheet[`C${index}`]) || (worksheet[`D${index}`]) || (worksheet[`E${index}`]) || (worksheet[`F${index}`]) || (worksheet[`G${index}`]) ) != undefined ); index++){
+    let CURP;
+    
+    for(let index = 2; ( ( (worksheet[`A${index}`]) || 
+                           (worksheet[`B${index}`]) || 
+                           (worksheet[`C${index}`]) || 
+                           (worksheet[`D${index}`]) || 
+                           (worksheet[`E${index}`]) || 
+                           (worksheet[`F${index}`]) || 
+                           (worksheet[`G${index}`]) || 
+                           (worksheet[`H${index}`]) ) != undefined ); index++){
         noControl = worksheet[`A${index}`].v;
 
         if(![...studentMap.keys()].includes(noControl)){
-            CURP = worksheet[`G${index}`].v.toUpperCase();
-            grupo = worksheet[`C${index}`].v.toUpperCase();
-            carrera = worksheet[`B${index}`].v.toUpperCase();
-            nombre = worksheet[`D${index}`].v.toUpperCase();
-            apellidoPaterno = worksheet[`E${index}`].v.toUpperCase();
-            
-            if (worksheet[`F${index}`] === undefined){
+            generacion = worksheet[`B${index}`].v.toUpperCase();
+            carrera = worksheet[`C${index}`].v.toUpperCase();
+            grupo = worksheet[`D${index}`].v.toUpperCase();
+            nombre = worksheet[`E${index}`].v.toUpperCase();
+            apellidoPaterno = worksheet[`F${index}`].v.toUpperCase();
+            if (worksheet[`G${index}`] === undefined){
                 apellidoMaterno = "";
             } else{
-                apellidoMaterno = worksheet[`F${index}`].v.toUpperCase();
+                apellidoMaterno = worksheet[`G${index}`].v.toUpperCase();
             }
+            CURP = worksheet[`H${index}`].v.toUpperCase();
             
-            studentMap.set(noControl, {nombre, apellidoPaterno, apellidoMaterno, carrera, grupo, CURP});
+
+            studentMap.set(noControl, {generacion, carrera, grupo, nombre, apellidoPaterno, apellidoMaterno, CURP});
         };
     }
 
