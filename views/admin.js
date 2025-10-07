@@ -12,8 +12,6 @@ const templateAdminPage = () => /*html*/`
                 hx-target="#search-results"
             />
             <br>
-            <br>
-
             <div id="search-results"></div>
         </div>
         <br>
@@ -58,6 +56,7 @@ const templateAdminPage = () => /*html*/`
     </div>
     <br><br>
 
+    
 <!-- VISIBILITY CHANGE -->
     <script>
         document.body.addEventListener("htmx:afterSwap", (evt) => {

@@ -48,3 +48,7 @@ td {
 #table-button-column {
     padding: 5px 5px 5px 5px
 }
+
+#excel-input-form {
+    display: block;
+}

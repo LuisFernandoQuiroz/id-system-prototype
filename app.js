@@ -126,6 +126,7 @@ app.post('/student-list/search', (req, res) => {
             ).map(([key, value]) => [
             key, 
                 {
+                    generacion: value.generacion.toUpperCase(),
                     carrera: value.carrera.toUpperCase(),
                     grupo: value.grupo.toUpperCase(),
                     nombre: value.nombre.toUpperCase(),

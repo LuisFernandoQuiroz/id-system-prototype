@@ -41,7 +41,7 @@ export function readExcelFile(filepath) {
 
     filteredSheetData = inputData.slice(1).map(row => ({
         "RFC DOCENTE":row[14],
-        "NOMBRE DOCENTE": row[13]
+        "NOMBRE DOCENTE": row[13 || ""].toUpperCase()
     }));
 
     for (let row of filteredSheetData){
@@ -54,23 +54,40 @@ export function readExcelFile(filepath) {
     newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
     xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "DOCENTES");
 
+    //Reset to create active class list
+    uniqueData = [];
+    repeatData = new Set();
+
+    filteredSheetData = inputData.slice(1).map(row => ({
+        "MATERIA":row[12 || ""].toUpperCase(),
+        "CARRERA":row[2 || ""].toUpperCase(),
+        "GRUPO":row[6 || ""].toUpperCase(),
+        "PROFESOR":row[13 || ""].toUpperCase()
+    }));
+
+    for (let row of filteredSheetData){
+        if (row["PROFESOR"] == (undefined || null || "")){
+            row["PROFESOR"] = "-";
+        }
+        
+        const key = `${row["MATERIA"]}|${row["CARRERA"]}|${row["GRUPO"]}|${row["PROFESOR"]}`;
+
+        if (!repeatData.has(key)){
+            repeatData.add(key);
+            uniqueData.push(row);
+        }
+    }
+
+    newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
+    xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "MATERIAS ACTIVAS");
+
+    //Write file
     const outputDirectory = path.join(__dirname, "data", "ordered data");
     
     if (!fs.existsSync(outputDirectory)){
         fs.mkdirSync(outputDirectory, { recursive: true });
     }
 
-    //Reset to create active class list
-    uniqueData = [];
-    repeatData = new Set();
-
-    filteredSheetData = inputData.slice(1).map(row => ({
-        "RFC":row[14],
-        "PROFESOR":row[14]
-    }));
-
-
-    //Write file
     const outputPath = path.join(outputDirectory, "sorted-data.xlsx");
 
     xlsx.writeFile(newWorkbook, outputPath);
