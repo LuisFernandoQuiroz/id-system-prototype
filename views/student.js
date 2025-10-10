@@ -1,11 +1,16 @@
 const templateStudentPage = () => /*html*/`
     <div>
         <h1>Scan ID</h1>
-        <input id="student-id-input">
-
-        <button hx-disable onclick="window.location='/student-list-download'" class="student-button">Enter</button>
-
-        <input type="file" id="input-file">
+        <input
+            type="search" 
+            name="search"
+            placeholder="Buscar ID"
+            hx-post="/student-list/search"
+            hx-trigger="keyup changed delay:500ms"
+            hx-target="#search-results"
+        />
+        <br>
+        <div></div>
     </div>
 `
 

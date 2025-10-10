@@ -1,7 +1,6 @@
 const templateTeacherPage = () => /*html*/`
     <div>
-        <h1>Test</h1>
-        <button id="excelData">Load data</button>
+        <input type="text" placeholder="Search teacher" >
     </div>
 `
 

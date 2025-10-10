@@ -118,11 +118,11 @@ app.post('/student-list/search', (req, res) => {
     const searchText = req.body.search.toUpperCase();
     let fragment;
     
-    if(searchText != ""){
+    if(searchText.replace(/\s/g,"") != ""){
         const unfilteredMap = convertStudentExcelFileToMap();
         const filteredMap = new Map(
             Array.from(unfilteredMap).filter(([key, value]) => 
-            value.nombre.toUpperCase().includes(searchText)
+            (value.nombre.toUpperCase().trim().includes(searchText) || key == searchText)
             ).map(([key, value]) => [
             key, 
                 {
@@ -139,7 +139,7 @@ app.post('/student-list/search', (req, res) => {
 
         fragment = templateStudentList(filteredMap);
 
-    } else if(searchText == ("" || " ")){
+    } else{
         const noSearch = () => /*HTML*/`
             <div></div>
         `
