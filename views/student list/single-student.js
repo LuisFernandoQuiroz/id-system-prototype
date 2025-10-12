@@ -1,7 +1,7 @@
 export default function templateSingleStudent(key, value) {
     return /*html*/`
         <tr id="${key}">
-            <td>${key}</td>
+            <td><input type="text" value="${key}"></td>
             <td>${value.generacion}</td>
             <td>${value.carrera}</td>
             <td>${value.grupo}</td>
