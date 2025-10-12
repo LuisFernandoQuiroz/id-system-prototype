@@ -114,3 +114,10 @@ textarea, input {
     overflow-x: auto;
     white-space: nowrap;
 }
+
+tr input {
+    field-sizing: content;
+    border: none;
+    outline: none;
+    background: none;
+}
