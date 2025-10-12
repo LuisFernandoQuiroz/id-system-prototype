@@ -116,7 +116,11 @@ textarea, input {
 }
 
 tr input {
+    width: 100%;
+    box-sizing: border-box;
+    /*
     field-sizing: content;
+    */
     border: none;
     outline: none;
     background: none;
