@@ -41,6 +41,18 @@ const templateAdminPage = () => /*html*/`
             </div>
         </div>
         <br>
+<!-- ACTIVE CLASSES -->
+        <div>
+            <button hx-get="/active-class-list" 
+                    hx-target="#class-list" 
+                    hx-swap="innerHTML" 
+                    class="dropdown-buttons">Docentes</button>
+
+            <div id="full-teacher-list" style="display:none;">
+                <div id="teacher-list"></div>
+            </div>
+        </div>
+        <br>
 
 <!-- INSERT DATA -->
         <div>

@@ -1,7 +1,7 @@
 export default function templateSingleStudent(key, value) {
     return /*html*/`
         <tr id="${key}">
-            <form hx-post="/update-student-row-data">
+            <form hx-post="/update-student-row" hx-target="#response" enctype="multipart/form-data">
                 <td><input type="text" value="${key}"></td>
                 <td>${value.generacion}</td>
                 <td>${value.carrera}</td>
