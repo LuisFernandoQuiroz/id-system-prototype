@@ -59,6 +59,7 @@ export function readExcelFile(filepath) {
     repeatData = new Set();
 
     filteredSheetData = inputData.slice(1).map(row => ({
+        "ID": `${row[12 || ""].toUpperCase()}_${row[2 || ""].toUpperCase()}_${row[6 || ""].toUpperCase()}`,
         "MATERIA":row[12 || ""].toUpperCase(),
         "CARRERA":row[2 || ""].toUpperCase(),
         "GRUPO":row[6 || ""].toUpperCase(),
@@ -88,7 +89,7 @@ export function readExcelFile(filepath) {
         fs.mkdirSync(outputDirectory, { recursive: true });
     }
 
-    const outputPath = path.join(outputDirectory, "sorted-data.xlsx");
+    const outputPath = path.join(outputDirectory, "ordered-data.xlsx");
 
     xlsx.writeFile(newWorkbook, outputPath);
 
