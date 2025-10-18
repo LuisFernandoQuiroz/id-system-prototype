@@ -16,7 +16,7 @@ export function readExcelFile(filepath) {
 
     let filteredSheetData = inputData.slice(1).map(row => ({
         "NO CONTROL": row[7],
-        "GENERACION":row[3],
+        "GENERACION":row[3].replace(/\s/g, ""),
         "CARRERA":row[2],
         "GRUPO":row[6],
         "NOMBRE": row[8],
@@ -81,6 +81,12 @@ export function readExcelFile(filepath) {
 
     newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
     xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "MATERIAS ACTIVAS");
+
+    //Reset to create active classes tables and sheets
+
+
+
+
 
     //Write file
     const outputDirectory = path.join(__dirname, "data", "ordered data");
