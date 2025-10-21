@@ -1,14 +1,13 @@
 import xlsx from 'xlsx';
 import fs from 'fs';
 import path from 'path';
+import archiver from 'archiver';
 
 export function readExcelFile(filepath) {
     const __dirname = path.resolve();
     const inputWorkbook = xlsx.readFile(filepath);
     const inputWorksheet = inputWorkbook.Sheets[inputWorkbook.SheetNames[0]];
-    
     let inputData = xlsx.utils.sheet_to_json(inputWorksheet, { header: 1, blankrows: false ,defval:"" });
-
     let newWorkbook = xlsx.utils.book_new();
     let newWorksheet;
     let uniqueData = [];
@@ -86,7 +85,7 @@ export function readExcelFile(filepath) {
 
 
 
-
+    
 
     //Write file
     const outputDirectory = path.join(__dirname, "data", "ordered data");
@@ -99,5 +98,36 @@ export function readExcelFile(filepath) {
 
     xlsx.writeFile(newWorkbook, outputPath);
 
-    return outputPath;
+    return resolve();
+}
+
+export function cleanAndArchiveData() {
+    const orderedPath = "data/ordered data";
+    const archivePath = "data/archive";
+    fs.mkdirSync(orderedPath, { recursive:true });
+    fs.mkdirSync(archivePath, { recursive:true });
+    
+    const currentFiles = fs.readdirSync(orderedPath);
+    if (currentFiles.length === 0) return;
+    
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const zipFile = path.join(archivePath, `Datos-${timestamp}.zip`);
+    const output = fs.createWriteStream(zipFile);
+    const archive = archiver("zip", { zlib:{ level:7 } });
+
+    return new Promise((resolve, reject) => {
+        output.on("close", () => {
+            console.log(`Archived ${archive.pointer()} total bytes  to ${zipFile}`);
+            fs.readdirSync(orderedPath).forEach(file =>
+                fs.unlinkSync(path.join(orderedPath, file))
+            );
+
+            resolve();
+        });
+
+        archive.on("error", reject);
+        archive.pipe(output);
+        archive.directory(orderedPath, false);
+        archive.finalize();
+    });
 }

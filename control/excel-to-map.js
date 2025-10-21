@@ -1,7 +1,7 @@
 import xlsx from "xlsx";
 
 export function convertStudentExcelFileToMap() {
-    var workbook = xlsx.readFile("./data/ordered data/sorted-data.xlsx");
+    var workbook = xlsx.readFile("./data/ordered data/ordered-data.xlsx");
     let worksheet = workbook.Sheets[workbook.SheetNames[0]];
 
     const studentMap = new Map();
@@ -47,7 +47,7 @@ export function convertStudentExcelFileToMap() {
 }
 
 export function convertTeacherExcelToMap() {
-    let workbook = xlsx.readFile("./data/ordered data/sorted-data.xlsx");
+    let workbook = xlsx.readFile("./data/ordered data/ordered-data.xlsx");
     let worksheet = workbook.Sheets[workbook.SheetNames[1]];
 
     const teacherMap = new Map();

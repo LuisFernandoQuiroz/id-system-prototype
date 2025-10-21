@@ -15,7 +15,7 @@ import { convertStudentExcelFileToMap } from './control/excel-to-map.js';
 import templateTeacherList from './views/teacher list/teacher-list.js';
 import { convertTeacherExcelToMap } from './control/excel-to-map.js';
 import templateDataDropdown from './views/data changes/admin-data-dropdown.js';
-import { readExcelFile } from './control/order-excel-data.js';
+import { cleanAndArchiveData, readExcelFile } from './control/order-excel-data.js';
 
 //APP CONSTANTS
 const app = express();
@@ -184,14 +184,22 @@ app.get('/input-data', (req, res) => {
 });
 
 //EXCEL DATA UPLOAD
-app.post('/file-upload', upload.single("xlsxFile"), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ error: "No file uploaded" });
+app.post('/file-upload', upload.single("xlsxFile"), async (req, res) => {
+    try{
+        if (!req.file) {
+            return res.status(400).json({ error: "No file uploaded" });
+        }
+        
+        await cleanAndArchiveData();
+
+        await readExcelFile(req.file.path);
+        
+        res.send("Files uploaded and archived");
+    } catch (err){
+        console.error(err);
+        res.status(500).send("Error processing file");
     }
     
-    let outputPath = readExcelFile(req.file.path);
-    
-    res.send("File recived and data sorted at " + outputPath);
 });
 
 //PORT
