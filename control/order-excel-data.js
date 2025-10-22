@@ -82,7 +82,7 @@ export function readExcelFile(filepath) {
     xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "MATERIAS ACTIVAS");
 
     //Reset to create active classes tables and sheets
-
+    
 
 
     
