@@ -4,6 +4,7 @@ import xlsx from 'xlsx';
 import multer from 'multer';
 import path from 'path';
 import fs, { readdirSync } from 'fs';
+import archiver from 'archiver';
 
 //IN-APP IMPORTS
 import templateHomePage from './views/index.js';
@@ -193,6 +194,8 @@ app.post('/file-upload', upload.single("xlsxFile"), async (req, res) => {
         await cleanAndArchiveData();
 
         await readExcelFile(req.file.path);
+
+        
         
         res.send("Files uploaded and archived");
     } catch (err){

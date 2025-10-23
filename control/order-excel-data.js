@@ -131,3 +131,7 @@ export function cleanAndArchiveData() {
         archive.finalize();
     });
 }
+
+export function createActiveClasses () {
+    
+}
