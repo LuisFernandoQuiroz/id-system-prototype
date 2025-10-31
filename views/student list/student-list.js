@@ -19,7 +19,7 @@ export default function templateStudentList(map){
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>CURP</th>
-                    <th id="table-button-column"></th>
+                    <th></th>
                 </tr>
                 ${items}
             </table>

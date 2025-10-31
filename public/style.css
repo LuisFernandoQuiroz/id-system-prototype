@@ -32,7 +32,12 @@ body {
     z-index: 1;
 }
 
-.header-text:hover {
+.header-img-name {
+    display: flex;
+    align-items: center;
+}
+
+.header-img-name:hover {
     cursor: pointer;
 }
 
