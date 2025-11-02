@@ -1,17 +1,19 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Calibri, sans-serif;
 }
 
 body {
     background-color: azure;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    
     scrollbar-gutter: stable both-edges;
     min-height: 100vh;
 }
 
-.header {
+/*INDEX & GENERAL*/
+header {
     background-color: #2f4f4f;
     color: white;
     font-family: sans-serif;
@@ -32,31 +34,37 @@ body {
     z-index: 1;
 }
 
-.header-img-name {
-    display: flex;
-    align-items: center;
-}
-
-.header-img-name:hover {
-    cursor: pointer;
-}
-
-#header-image {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
 main {
     min-height: 80vh;
     height: 80%;
 }
 
-footer {
-    background-color: #2f4f4f;
+button:hover {
+    cursor: pointer;
+}
+
+textarea, input {
+    resize: none;
+}
+
+#header-main {
     display: flex;
-    min-height: 10vh;
+    align-items: center;
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
+#header-main-text {
+    font-family: Calibri, sans-serif;
+}
+
+#header-main-logo {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .home-button-list {
@@ -68,10 +76,6 @@ footer {
     margin: 0;
     justify-content: space-evenly;
     align-content: center;
-}
-
-button:hover {
-    cursor: pointer;
 }
 
 .home-button {
@@ -89,44 +93,12 @@ button:hover {
 }
 
 .home-button:hover {
+    color: white;
     background-color: darkslategray;
-    color: white;
 }
 
-textarea, input {
-    resize: none;
-}
-
-#table-button {
-    width: 75px;
-    height: 25px;
-    background-color:#f5fffa;
-    border: 1px solid black;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition-duration: 0.3s;
-    border-radius: 10px;
-}
-
-#table-button:hover {
-    background-color: maroon;
-    color: white;
-}
-
-#table-container {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-tr input {
-    width: 100%;
-    box-sizing: border-box;
-    /*
-    field-sizing: content;
-    */
-    border: none;
-    outline: none;
-    background: none;
+footer {
+    background-color: #2f4f4f;
+    display: flex;
+    min-height: 10vh;
 }

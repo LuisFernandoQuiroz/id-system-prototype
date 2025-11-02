@@ -9,18 +9,17 @@ const templateHomePage = () => /*html*/`
             
             <link rel="stylesheet" href="/style.css">
             <link rel="stylesheet" href="/style-view-dropdowns.css">
-            <link rel="stylesheet" href="/style-admin.css">
+            <link rel="stylesheet" href="/style-table.css">
             
 
             <script src="https://unpkg.com/htmx.org" defer></script>
         </head>
         <body>
-            <header class="header">
-                <div class="header-img-name" hx-get="/" hx-target="body" hx-swap="innerHTML">
-                    <img src="./resources/Imagotipo_DGETI-1.png" id="header-image" height="75px" width="75px">
-                    <h1 class="header-text">CBTis 220</h1>
+            <header>
+                <div id="header-main" hx-get="/" hx-target="body" hx-swap="innerHTML">
+                    <img id="header-main-logo" src="./resources/Imagotipo_DGETI-1.png" height="75px" width="75px">
+                    <h1 id="header-main-text">CBTis 220</h1>
                 </div>
-                
             </header>
 
             <main id="main">
