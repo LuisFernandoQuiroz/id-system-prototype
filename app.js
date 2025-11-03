@@ -41,7 +41,7 @@ const upload = multer({ storage });
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
 
-//ROUTES
+//MAIN ROUTES
 app.get('', (req, res) => {
     res.send(templateHomePage());
 });

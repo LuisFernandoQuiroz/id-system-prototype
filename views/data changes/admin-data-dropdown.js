@@ -1,11 +1,23 @@
 export default function templateDataDropdown(){
     return /*html*/`
-        <div>
-            <form hx-post="/file-upload" hx-encoding="multipart/form-data" id="excel-input-form">
-                <label for="xlsxFile">Ingrese documento Excel:</label>
-                <input type="file" name="xlsxFile" accept=".xlsx,.xls">
+    <!--ade = add, delete, edit-->
+        <div id="ade-student">
+
+        </div>
+
+        <div id="ade-teacher">
+
+        </div>
+        
+        <div id="initial-data-input">
+            <p>Ingreso de datos iniciales</p><br>
+            <form hx-post="/file-upload" hx-encoding="multipart/form-data">
+                <label for="xlsxFile">Seleccione Excel:</label><br>
+                <input type="file" name="xlsxFile" accept=".xlsx,.xls"><br>
                 <input type="submit" value="Submit">
             </form>
         </div>
+
+        
     `;
 }
