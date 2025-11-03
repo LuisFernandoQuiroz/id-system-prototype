@@ -165,6 +165,40 @@ app.get('/student-list', (req, res) => {
     }
 });
 
+app.post('/edit-student/:id', (req, res) => {
+    const id = req.params.id;
+    const DATA_FILE = "./data/ordered-data/ordered-data.xlsx"
+    const { generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP } = req.body;
+
+    try {
+        const workbook = xlsx.readFile(DATA_FILE);
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const data = xlsx.utils.sheet_to_json(sheet, { defval: "" });
+        const rowIndex = data.findIndex((r) => String(r.id) === id);
+
+        if(rowIndex === -1){
+            return res.status(404).send(`<tr><td colspan="9">Datos no encontrados (ID: ${id})</td></tr>`);
+        }
+
+        data[rowIndex].generacion = generacion;
+        data[rowIndex].carrera = carrera;
+        data[rowIndex].grupo = grupo;
+        data[rowIndex].nombre = nombre;
+        data[rowIndex].apellidoP = apellidoP;
+        data[rowIndex].apellidoM = apellidoM;
+        data[rowIndex].CURP = CURP;
+
+        const newSheet = xlsx.utils.json_to_sheet(data);
+        workbook.Sheets[sheetName] = newSheet;
+        xlsx.writeFile(workbook, DATA_FILE);
+        
+
+    } catch (err) {
+
+    }
+});
+
 app.get('/teacher-list', (req, res) => {
     const map = convertTeacherExcelToMap();
     const fragment = templateTeacherList(map);

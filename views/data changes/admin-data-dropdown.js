@@ -2,11 +2,11 @@ export default function templateDataDropdown(){
     return /*html*/`
     <!--ade = add, delete, edit-->
         <div id="ade-student">
-
+            <h2>Editar alumno</h2>
         </div>
 
         <div id="ade-teacher">
-
+            <h2>Editar profesor</h2>
         </div>
         
         <div id="initial-data-input">
@@ -17,7 +17,5 @@ export default function templateDataDropdown(){
                 <input type="submit" value="Submit">
             </form>
         </div>
-
-        
     `;
 }

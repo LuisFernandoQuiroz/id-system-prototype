@@ -1,15 +1,17 @@
 export default function templateSingleStudent(key, value) {
     return /*html*/`
         <tr id="${key}">
-            <td><input type="text" value="${key}"></td>
-            <td>${value.generacion}</td>
-            <td>${value.carrera}</td>
-            <td>${value.grupo}</td>
-            <td>${value.nombre}</td>
-            <td>${value.apellidoPaterno}</td>
-            <td>${value.apellidoMaterno}</td>
-            <td>${value.CURP}</td>
-            <td id="table-button-column"><button id="table-button" hx-get="/student/edit/${key}" hx-target="closest tr">Editar</button></td>
+            <form hx-post="/edit-student/${key}" hx-target="closest tr" hx-swap="outerHTML" hx-include="closest tr">
+                <td><input type="text" name="id" value="${key}"></td>
+                <td><input type="text" name="generacion" value="${value.generacion}"></td>
+                <td><input type="text" name="carrera" value="${value.carrera}"></td>
+                <td><input type="text" name="grupo" value="${value.grupo}"></td>
+                <td><input type="text" name="nombre" value="${value.nombre}"></td>
+                <td><input type="text" name="apellidoP" value="${value.apellidoPaterno}"></td>
+                <td><input type="text" name="apellidoM" value="${value.apellidoMaterno}"></td>
+                <td><input type="text" name="CURP" value="${value.CURP}"></td>
+                <td id="table-button-column"><input type="submit" id="table-button" hx-get="/student/edit/${key}" hx-target="closest tr" value="Editar"></td>
+            </form>
         </tr>
     `
 }
