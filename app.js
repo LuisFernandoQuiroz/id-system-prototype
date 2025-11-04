@@ -17,6 +17,7 @@ import templateTeacherList from './views/teacher list/teacher-list.js';
 import { convertTeacherExcelToMap } from './control/excel-to-map.js';
 import templateDataDropdown from './views/data changes/admin-data-dropdown.js';
 import { cleanAndArchiveData, readExcelFile } from './control/order-excel-data.js';
+import templateSingleStudent from './views/student list/single-student.js';
 
 //APP CONSTANTS
 const app = express();
@@ -166,36 +167,67 @@ app.get('/student-list', (req, res) => {
 });
 
 app.post('/edit-student/:id', (req, res) => {
-    const id = req.params.id;
-    const DATA_FILE = "./data/ordered-data/ordered-data.xlsx"
-    const { generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP } = req.body;
+    const id = req.params.id.toString();
+    const DATA_FILE = "./data/ordered data/ordered-data.xlsx"
+    let { generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP } = req.body;
+    generacion = generacion.toUpperCase();
+    carrera = carrera.toUpperCase();
+    grupo = grupo.toUpperCase();
+    nombre = nombre.toUpperCase();
+    apellidoP = apellidoP.toUpperCase();
+    apellidoM = apellidoM.toUpperCase();
+    CURP = CURP.toUpperCase();
+
+    let updateStudent = new Map();
+    updateStudent.set(id, {generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP});
 
     try {
         const workbook = xlsx.readFile(DATA_FILE);
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         const data = xlsx.utils.sheet_to_json(sheet, { defval: "" });
-        const rowIndex = data.findIndex((r) => String(r.id) === id);
-
+        const rowIndex = data.findIndex((r) => String(r["NO CONTROL"]) === id);
+        
         if(rowIndex === -1){
             return res.status(404).send(`<tr><td colspan="9">Datos no encontrados (ID: ${id})</td></tr>`);
         }
 
-        data[rowIndex].generacion = generacion;
-        data[rowIndex].carrera = carrera;
-        data[rowIndex].grupo = grupo;
-        data[rowIndex].nombre = nombre;
-        data[rowIndex].apellidoP = apellidoP;
-        data[rowIndex].apellidoM = apellidoM;
-        data[rowIndex].CURP = CURP;
+        data[rowIndex]["GENERACION"]= generacion;
+        data[rowIndex]["CARRERA"] = carrera;
+        data[rowIndex]["GRUPO"] = grupo;
+        data[rowIndex]["NOMBRE"] = nombre;
+        data[rowIndex]["PATERNO"] = apellidoP;
+        data[rowIndex]["MATERNO"] = apellidoM;
+        data[rowIndex]["CURP"] = CURP;
 
         const newSheet = xlsx.utils.json_to_sheet(data);
+
         workbook.Sheets[sheetName] = newSheet;
         xlsx.writeFile(workbook, DATA_FILE);
+
+        const fragment = `
+            <tr id="${id}">
+                <form>
+                    <td><input type="text" name="id" value="${id}"></td>
+                    <td><input type="text" name="generacion" value="${generacion}"></td>
+                    <td><input type="text" name="carrera" value="${carrera}"></td>
+                    <td><input type="text" name="grupo" value="${grupo}"></td>
+                    <td><input type="text" name="nombre" value="${nombre}"></td>
+                    <td><input type="text" name="apellidoP" value="${apellidoP}"></td>
+                    <td><input type="text" name="apellidoM" value="${apellidoM}"></td>
+                    <td><input type="text" name="CURP" value="${CURP}"></td>
+                    <td id="table-button-column"><input type="submit" id="table-button" hx-post="/edit-student/${id}" 
+                                                                                        hx-target="closest tr" 
+                                                                                        hx-swap="outerHTML" 
+                                                                                        hx-include="closest tr" value="Editar"></td>
+                </form>
+            </tr>
+        `;
         
-
+        res.send(fragment);
     } catch (err) {
-
+        console.error("Error updating row: ", err);
+        res.status(500).send(`<tr><td colspan="9">Error actualizando alumno</td></tr>`);
     }
 });
 
