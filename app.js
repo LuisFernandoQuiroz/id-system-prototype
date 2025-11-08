@@ -167,19 +167,21 @@ app.get('/student-list', (req, res) => {
 });
 
 app.post('/edit-student/:id', (req, res) => {
-    const id = req.params.id.toString();
-    const DATA_FILE = "./data/ordered data/ordered-data.xlsx"
+    let fragment;
+    let id = req.params.id.toString();
     let { generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP } = req.body;
+    const DATA_FILE = "./data/ordered data/ordered-data.xlsx"
+    
     generacion = generacion.toUpperCase();
     carrera = carrera.toUpperCase();
     grupo = grupo.toUpperCase();
     nombre = nombre.toUpperCase();
-    apellidoP = apellidoP.toUpperCase();
-    apellidoM = apellidoM.toUpperCase();
+    let apellidoPaterno = apellidoP.toUpperCase();
+    let apellidoMaterno = apellidoM.toUpperCase();
     CURP = CURP.toUpperCase();
 
     let updateStudent = new Map();
-    updateStudent.set(id, {generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP});
+    updateStudent.set(id, {generacion, carrera, grupo, nombre, apellidoPaterno, apellidoMaterno, CURP});
 
     try {
         const workbook = xlsx.readFile(DATA_FILE);
@@ -196,8 +198,8 @@ app.post('/edit-student/:id', (req, res) => {
         data[rowIndex]["CARRERA"] = carrera;
         data[rowIndex]["GRUPO"] = grupo;
         data[rowIndex]["NOMBRE"] = nombre;
-        data[rowIndex]["PATERNO"] = apellidoP;
-        data[rowIndex]["MATERNO"] = apellidoM;
+        data[rowIndex]["PATERNO"] = apellidoPaterno;
+        data[rowIndex]["MATERNO"] = apellidoMaterno;
         data[rowIndex]["CURP"] = CURP;
 
         const newSheet = xlsx.utils.json_to_sheet(data);
@@ -205,7 +207,12 @@ app.post('/edit-student/:id', (req, res) => {
         workbook.Sheets[sheetName] = newSheet;
         xlsx.writeFile(workbook, DATA_FILE);
 
-        const fragment = `
+        updateStudent.forEach((value, key) => {
+            fragment = templateSingleStudent(key, value);
+        });
+
+        /*const fragment = 
+        `
             <tr id="${id}">
                 <form>
                     <td><input type="text" name="id" value="${id}"></td>
@@ -222,7 +229,7 @@ app.post('/edit-student/:id', (req, res) => {
                                                                                         hx-include="closest tr" value="Editar"></td>
                 </form>
             </tr>
-        `;
+        `;*/
         
         res.send(fragment);
     } catch (err) {
@@ -261,7 +268,7 @@ app.post('/file-upload', upload.single("xlsxFile"), async (req, res) => {
 
         await readExcelFile(req.file.path);
 
-        
+        /*await createActiveClasses();*/
         
         res.send("Files uploaded and archived");
     } catch (err){

@@ -98,7 +98,7 @@ export function readExcelFile(filepath) {
 
     xlsx.writeFile(newWorkbook, outputPath);
 
-    return resolve();
+    return;
 }
 
 export function cleanAndArchiveData() {
@@ -108,7 +108,7 @@ export function cleanAndArchiveData() {
     fs.mkdirSync(archivePath, { recursive:true });
     
     const currentFiles = fs.readdirSync(orderedPath);
-    if (currentFiles.length === 0) return;
+    if (currentFiles.length === 0) return Promise.resolve();
     
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
     const zipFile = path.join(archivePath, `Datos-${timestamp}.zip`);
@@ -117,10 +117,18 @@ export function cleanAndArchiveData() {
 
     return new Promise((resolve, reject) => {
         output.on("close", () => {
-            console.log(`Archived ${archive.pointer()} total bytes  to ${zipFile}`);
-            fs.readdirSync(orderedPath).forEach(file =>
-                fs.unlinkSync(path.join(orderedPath, file))
-            );
+            console.log(`Archived ${archive.pointer()} bytes.`);
+            
+            fs.readdirSync(orderedPath).forEach(item => {
+                const itemPath = path.join(orderedPath, item);
+                const stat = fs.statSync(itemPath);
+
+                if(stat.isDirectory()) {
+                    fs.rmSync(itemPath, { recursive: true, force: false });
+                } else {
+                    fs.unlinkSync(itemPath);
+                }
+            });
 
             resolve();
         });
@@ -132,6 +140,6 @@ export function cleanAndArchiveData() {
     });
 }
 
-export function createActiveClasses () {
+export function createActiveClasses() {
     
 }
