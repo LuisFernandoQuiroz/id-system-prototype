@@ -58,7 +58,7 @@ td {
     display: block;
 }
 
-#table-button {
+#table-button-edit, #table-button-confirm, #table-button-delete {
     width: 75px;
     height: 25px;
     background-color:#f5fffa;
@@ -71,7 +71,17 @@ td {
     border-radius: 10px;
 }
 
-#table-button:hover {
+#table-button-edit:hover {
+    background-color: navy;
+    color: white;
+}
+
+#table-button-confirm:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+#table-button-delete:hover {
     background-color: maroon;
     color: white;
 }

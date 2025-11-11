@@ -17,7 +17,7 @@ import templateTeacherList from './views/teacher list/teacher-list.js';
 import { convertTeacherExcelToMap } from './control/excel-to-map.js';
 import templateDataDropdown from './views/data changes/admin-data-dropdown.js';
 import { cleanAndArchiveData, readExcelFile } from './control/order-excel-data.js';
-import templateSingleStudent from './views/student list/single-student.js';
+import templateSingleStudent, { templateSingleStudentEdit } from './views/student list/single-student.js';
 
 //APP CONSTANTS
 const app = express();
@@ -166,18 +166,42 @@ app.get('/student-list', (req, res) => {
     }
 });
 
-app.post('/edit-student/:id', (req, res) => {
+
+app.post(`/edit-student/:id`, (req, res) => {
     let fragment;
     let id = req.params.id.toString();
-    let { generacion, carrera, grupo, nombre, apellidoP, apellidoM, CURP } = req.body;
+    let { generacion, carrera, grupo, nombre, apellidoPaterno, apellidoMaterno, CURP } = req.body;
+
+    generacion = generacion.toUpperCase();
+    carrera = carrera.toUpperCase();
+    grupo = grupo.toUpperCase();
+    nombre = nombre.toUpperCase();
+    apellidoPaterno = apellidoPaterno.toUpperCase();
+    apellidoMaterno = apellidoMaterno.toUpperCase();
+    CURP = CURP.toUpperCase();
+
+    let studentMap = new Map();
+    studentMap.set(id, {generacion, carrera, grupo, nombre, apellidoPaterno, apellidoMaterno, CURP});
+
+    studentMap.forEach((value, key) => {
+        fragment = templateSingleStudentEdit(key, value);
+    });
+
+    res.send(fragment);
+});
+
+app.post('/edit-student-confirm/:id', (req, res) => {
+    let fragment;
+    let id = req.params.id.toString();
+    let { generacion, carrera, grupo, nombre, apellidoPaterno, apellidoMaterno, CURP } = req.body;
     const DATA_FILE = "./data/ordered data/ordered-data.xlsx"
     
     generacion = generacion.toUpperCase();
     carrera = carrera.toUpperCase();
     grupo = grupo.toUpperCase();
     nombre = nombre.toUpperCase();
-    let apellidoPaterno = apellidoP.toUpperCase();
-    let apellidoMaterno = apellidoM.toUpperCase();
+    apellidoPaterno = apellidoPaterno.toUpperCase();
+    apellidoMaterno = apellidoMaterno.toUpperCase();
     CURP = CURP.toUpperCase();
 
     let updateStudent = new Map();
@@ -210,26 +234,6 @@ app.post('/edit-student/:id', (req, res) => {
         updateStudent.forEach((value, key) => {
             fragment = templateSingleStudent(key, value);
         });
-
-        /*const fragment = 
-        `
-            <tr id="${id}">
-                <form>
-                    <td><input type="text" name="id" value="${id}"></td>
-                    <td><input type="text" name="generacion" value="${generacion}"></td>
-                    <td><input type="text" name="carrera" value="${carrera}"></td>
-                    <td><input type="text" name="grupo" value="${grupo}"></td>
-                    <td><input type="text" name="nombre" value="${nombre}"></td>
-                    <td><input type="text" name="apellidoP" value="${apellidoP}"></td>
-                    <td><input type="text" name="apellidoM" value="${apellidoM}"></td>
-                    <td><input type="text" name="CURP" value="${CURP}"></td>
-                    <td id="table-button-column"><input type="submit" id="table-button" hx-post="/edit-student/${id}" 
-                                                                                        hx-target="closest tr" 
-                                                                                        hx-swap="outerHTML" 
-                                                                                        hx-include="closest tr" value="Editar"></td>
-                </form>
-            </tr>
-        `;*/
         
         res.send(fragment);
     } catch (err) {
@@ -266,7 +270,7 @@ app.post('/file-upload', upload.single("xlsxFile"), async (req, res) => {
         
         await cleanAndArchiveData();
 
-        await readExcelFile(req.file.path);
+        readExcelFile(req.file.path);
 
         /*await createActiveClasses();*/
         

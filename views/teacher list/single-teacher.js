@@ -3,7 +3,7 @@ export default function templateSingleTeacher(key, value) {
         <tr>
             <td>${key}</td>
             <td>${value}</td>
-            <td id="table-button-column"><button id="table-button">DELETE</button></td>
+            <td id="table-button-column"><button id="table-button-edit">Editar</button></td>
         </tr>
     `
 }

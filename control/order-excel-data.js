@@ -16,12 +16,12 @@ export function readExcelFile(filepath) {
     let filteredSheetData = inputData.slice(1).map(row => ({
         "NO CONTROL": row[7],
         "GENERACION":row[3].replace(/\s/g, ""),
-        "CARRERA":row[2],
-        "GRUPO":row[6],
-        "NOMBRE": row[8],
-        "PATERNO":row[9],
-        "MATERNO":row[10],
-        "CURP":row[11]
+        "CARRERA":row[2].trim(),
+        "GRUPO":row[6].replace(/\s/g, ""),
+        "NOMBRE": row[8].trim(),
+        "PATERNO":row[9].trim(),
+        "MATERNO":row[10].trim(),
+        "CURP":row[11].replace(/\s/g, "")
     }));
 
     for (let row of filteredSheetData){
