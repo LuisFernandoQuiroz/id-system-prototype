@@ -1,0 +1,105 @@
+table, th, tr {
+    border: 1px solid white;
+    border-collapse: collapse;
+
+}
+
+table {
+    transform: translateX(-50%) translateX(50vw);
+}
+
+/*TABLE HEADER*/
+th {
+    background-color: darkslategray;
+    color: white;
+    padding: 10px 20px 10px 5px;
+    text-align: left;
+    position: sticky;
+}
+
+/*TABLE ROW*/
+tr:nth-child(even){
+    background-color: white;
+}
+
+tr:nth-child(odd){
+    background-color: #2f4f4f30;
+}
+
+tr input {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+tr:hover {
+    background-color: darkslategray;
+    color: white;
+
+    input {
+        color: white;
+        background-color: darkslategray;
+    }
+}
+
+/*TABLE DATA*/
+td {
+    padding: 5px 20px 5px 5px;
+}
+
+/*TABLE ID*/
+#table-button-column {
+    padding: 5px 5px 5px 5px
+}
+
+#excel-input-form {
+    display: block;
+}
+
+#table-button-edit, #table-button-confirm, #table-button-delete {
+    width: 75px;
+    height: 25px;
+    background-color:#f5fffa;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.3s;
+    border-radius: 10px;
+}
+
+#table-button-edit:hover {
+    background-color: navy;
+    color: white;
+}
+
+#table-button-confirm:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+#table-button-delete:hover {
+    background-color: maroon;
+    color: white;
+}
+
+#table-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/*SCREEN SIZE FILTERS*/
+@media only screen and (max-width: 1550px) {
+    #full-student-table {
+        transform: none;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    #full-teacher-table {
+        transform: none;
+    }
+}

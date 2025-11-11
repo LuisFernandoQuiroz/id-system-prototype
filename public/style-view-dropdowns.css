@@ -1,0 +1,17 @@
+.dropdown-buttons {
+    width: 100%;
+    height: 50px;
+    background-color:mintcream;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24;
+    transition-duration: 0.3s;
+}
+
+.dropdown-buttons:hover {
+    background-color: darkslategray;
+    color: white;
+}
