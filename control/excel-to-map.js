@@ -58,13 +58,13 @@ export function convertTeacherExcelToMap() {
     for(let index = 2; ((worksheet[`A${index}`] || worksheet[`B${index}`]) != undefined); index++){
         let count = 0;
 
-        if(worksheet[`B${index}`] != ''){
-            teacherID = worksheet[`B${index}`].v.toUpperCase();
+        if(worksheet[`A${index}`] != ''){
+            teacherID = worksheet[`A${index}`].v.toUpperCase();
             count+=1;
         }
 
-        if(worksheet[`A${index}`] != ''){
-            teacherName = worksheet[`A${index}`].v.toUpperCase();
+        if(worksheet[`B${index}`] != ''){
+            teacherName = worksheet[`B${index}`].v.toUpperCase();
         }
 
         if(![...teacherMap.keys()].includes(teacherID) && count == 1 && ((teacherID || teacherName) != '')){

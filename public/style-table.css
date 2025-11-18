@@ -1,11 +1,10 @@
 table, th, tr {
     border: 1px solid white;
-    border-collapse: collapse;
-
 }
 
 table {
     transform: translateX(-50%) translateX(50vw);
+    border-collapse: collapse;
 }
 
 /*TABLE HEADER*/
@@ -46,7 +45,7 @@ tr:hover {
 
 /*TABLE DATA*/
 td {
-    padding: 5px 20px 5px 5px;
+    padding: 5px 5px 5px 5px;
 }
 
 /*TABLE ID*/
@@ -72,7 +71,7 @@ td {
 }
 
 #table-button-edit:hover {
-    background-color: navy;
+    background-color: #a6201f;
     color: white;
 }
 

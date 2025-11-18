@@ -58,7 +58,7 @@ export function readExcelFile(filepath) {
     repeatData = new Set();
 
     filteredSheetData = inputData.slice(1).map(row => ({
-        "ID": `${row[12 || ""].toUpperCase()}_${row[2 || ""].toUpperCase()}_${row[6 || ""].toUpperCase()}`,
+        "ID": `${row[12 || ""].toUpperCase()}_${row[2 || ""].toUpperCase()}_${row[6 || ""].toUpperCase()}_${row[13 || ""].toUpperCase()}`,
         "MATERIA":row[12 || ""].toUpperCase(),
         "CARRERA":row[2 || ""].toUpperCase(),
         "GRUPO":row[6 || ""].toUpperCase(),
