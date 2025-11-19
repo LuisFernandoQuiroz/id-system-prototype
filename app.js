@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
         const uploadPath = "data/input data/";
 
         fs.mkdirSync(uploadPath, { recursive: true });
-        fs,readdirSync(uploadPath).forEach(existingFile => {
+        fs.readdirSync(uploadPath).forEach(existingFile => {
             fs.unlinkSync(path.join(uploadPath, existingFile));
         });
         cb(null, uploadPath);
@@ -37,6 +37,7 @@ const storage = multer.diskStorage({
         cb(null, "mixedData" + extension);
     }
 });
+
 const upload = multer({ storage });
 
 app.use(express.urlencoded({extended: false}));
@@ -76,6 +77,7 @@ app.get('/admin', (req, res) => {
 
 
 //STUDENT ROUTES
+/*
 app.get('/student-list-download', (req, res) => {
     const workbook = xlsx.readFile("./data/detalle_calificaciones (51).xlsx");
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -110,7 +112,7 @@ app.get('/student-list-download', (req, res) => {
 
     res.send(buffer);
 });
-
+*/
 
 //TEACHER ROUTES
 
