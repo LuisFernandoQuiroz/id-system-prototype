@@ -22,9 +22,11 @@ import templateSingleStudent, { templateSingleStudentEdit } from './views/studen
 //APP CONSTANTS
 const app = express();
 const port = 80;
+const BASE_DIR = process.cwd();
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadPath = "data/input data/";
+        const uploadPath = path.join(BASE_DIR, "data", "input data");
+        
 
         fs.mkdirSync(uploadPath, { recursive: true });
         fs.readdirSync(uploadPath).forEach(existingFile => {
@@ -77,42 +79,7 @@ app.get('/admin', (req, res) => {
 
 
 //STUDENT ROUTES
-/*
-app.get('/student-list-download', (req, res) => {
-    const workbook = xlsx.readFile("./data/detalle_calificaciones (51).xlsx");
-    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    const data = xlsx.utils.sheet_to_json(worksheet);
 
-    let filteredData = data.map(row => ({
-        id: row["NO CONTROL"],
-        name: row["NOMBRE"]
-    }));
-
-    let uniqueData = [];
-    let repeatData = new Set();
-
-    for (let row of filteredData){
-        if(!repeatData.has(row.id)){
-            repeatData.add(row.id);
-            uniqueData.push(row);
-        }
-    }
-
-    const newWorkbook = xlsx.utils.book_new();
-    const newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
-    xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "studentList");
-    
-    const buffer = xlsx.write(newWorkbook, {
-        type: "buffer",
-        bookType: "xlsx"
-    });
-
-    res.setHeader("Content-Disposition", "attachment; filename=student-list.xlsx");
-    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-
-    res.send(buffer);
-});
-*/
 
 //TEACHER ROUTES
 
@@ -196,8 +163,9 @@ app.post('/edit-student-confirm/:id', (req, res) => {
     let fragment;
     let id = req.params.id.toString();
     let { generacion, carrera, grupo, nombre, apellidoPaterno, apellidoMaterno, CURP } = req.body;
-    const DATA_FILE = "./data/ordered data/ordered-data.xlsx"
     
+    const DATA_FILE = path.join(BASE_DIR, "data", "ordered data", "ordered-data.xlsx");
+
     generacion = generacion.toUpperCase();
     carrera = carrera.toUpperCase();
     grupo = grupo.toUpperCase();
@@ -271,10 +239,7 @@ app.post('/file-upload', upload.single("xlsxFile"), async (req, res) => {
         }
         
         await cleanAndArchiveData();
-
         readExcelFile(req.file.path);
-
-        /*await createActiveClasses();*/
         
         res.send("Files uploaded and archived");
     } catch (err){
