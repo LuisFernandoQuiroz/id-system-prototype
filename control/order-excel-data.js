@@ -81,12 +81,6 @@ export function readExcelFile(filepath) {
     newWorksheet = xlsx.utils.json_to_sheet(uniqueData);
     xlsx.utils.book_append_sheet(newWorkbook, newWorksheet, "MATERIAS ACTIVAS");
 
-    //Reset to create class list
-    uniqueData = [];
-    repeatData = new Set();
-
-    
-
     //Write file
     const outputDirectory = path.join(__dirname, "data", "ordered data");
     
